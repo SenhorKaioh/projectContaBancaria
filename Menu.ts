@@ -1,15 +1,24 @@
 import readlinesync = require("readline-sync");
-import { colors } from './Cores';
+import { colors } from './src/util/Cores';
+import { Conta } from './model/Conta';
 
 export function main(){
 
 let cod: number;
 
+let c1: Conta = new Conta(1, 123, 1, "Caio", 1000);
+c1.visualizar();
+c1.sacar(100);
+c1.visualizar();
+c1.depositar(500);
+c1.visualizar();
+
+
 
 
 while(true) {
 
-console.log(colors.bg.blue, colors.fg.yellow,
+console.log(colors.bg.black, colors.fg.yellowstrong,
             "                                                  ")
 console.log("|*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*|")
 console.log("|     SEJA BEM-VINDO AO BANCO CARIOCAS           -|")
