@@ -7,6 +7,7 @@ export abstract class Conta{
     private _tipo: number;
     private _titular: string;
     private _saldo: number;
+    static numero: number;
 
 	constructor(numero: number, agencia: number, tipo: number, titular: string, saldo: number) {
 		this._numero = numero;
