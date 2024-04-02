@@ -7,7 +7,7 @@ import { ContaController } from "./src/controller/ContaController";
 
 export function main(){
  
-let cod, numero, agencia, tipo, saldo, limite , aniversario: number;
+let cod, numero, agencia, tipo, saldo, limite , aniversario, valor, numeroDestino: number;
 let titular : string;
 const tipoContas = [' Conta Corrente', 'Conta Poupanca'];
 
@@ -40,7 +40,8 @@ console.log("|        5 - Apagar a Conta                      -|")
 console.log("|        6 - Sacar                               -|")
 console.log("|        7 - Depositar                           -|")
 console.log("|        8 - Transferir valores entre Contas     -|")
-console.log("|        9 - Sair                                -|")
+console.log("|        9 - Buscar Conta por Titular            -|")
+console.log("|        0 - Sair                                -|")
 console.log("|                                                -|")
 console.log("|                                                -|")
 console.log("|-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-|")
@@ -49,7 +50,7 @@ console.log("                                                   ",colors.reset);
 console.log("Entre com a opção desejada: ");
 cod = readlinesync.questionInt("");
 
-if (cod === 9){
+if (cod === 0){
     console.log("\nBANCO CARIOCAS - SUA VIDA FINANCEIRO MELHOR TODO DIA!");
     sobre();
     process.exit(0);
@@ -157,19 +158,60 @@ switch(cod){
             case 6:
                 console.log(colors.fg.magenta,
                     "\n\nSaque\n\n", colors.reset);
+
+                  console.log("\nDigite o número da Conta: ");
+                  numero = readlinesync.questionInt("");
+
+                  console.log("\nDigite o valor do Saque (R$): ");
+                  valor = readlinesync.questionFloat("");
+
+                  Contas.sacar(numero, valor);
+
+
                     keyPress()
                 break;
             case 7:
                 console.log(colors.fg.magenta,
                     "\n\nDepósito\n\n", colors.reset);
+
+                    console.log("\nDigite o valor do Saque (R$): ");
+                  numero = readlinesync.questionInt("");
+
+                  console.log("\nDigite o valor do Depósito (R$): ");
+                  valor = readlinesync.questionFloat("");
+
+                  Contas.depositar(numero, valor);
+
                     keyPress()
 
                 break;
             case 8:
                 console.log(colors.fg.magenta,
                     "\n\nTransferência entre Contas\n\n", colors.reset);
-                    keyPress()
 
+                    console.log("\nDigite o número da Conta de Origem: ");
+                    numero = readlinesync.questionInt("");
+  
+                    console.log("\nDigite o número da Conta de Destino: ");
+                    numeroDestino = readlinesync.questionInt("");
+
+                    console.log("\nDigite o valor do Depósito (R$): ");
+                    valor = readlinesync.questionFloat("");
+  
+                    Contas.tranferir(numero, numeroDestino,valor);
+
+                    keyPress()
+                break;
+                case 9:
+                    console.log(colors.fg.magenta,
+                        "\n\nConsultar dados da Conta - por número\n\n", colors.reset);
+                        
+                        console.log("Digite o Nome do Titular: ")
+                        titular = readlinesync.question(" ") 
+    
+                        Contas.procurarPorTitular(titular);
+                         
+                    keyPress()
                 break;
             default:
                 console.log(colors.fg.magenta,

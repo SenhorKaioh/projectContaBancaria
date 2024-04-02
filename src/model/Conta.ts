@@ -97,16 +97,17 @@ export abstract class Conta{
 		this._saldo = value;
 	}
 
-    public sacar(valor: number): boolean{
-        if (this.saldo < valor){
-            console.log("\n Saldo Insuficiente!");
-            return false;
+    public sacar(valor: number): boolean {
+        if(this._saldo >= valor){
+            this._saldo = this._saldo - valor; // Mudar
+            return true;
         }
-        this.saldo = this._saldo - valor;
-        return true;
+
+        console.log("\nSaldo insuficiente!");
+        return false;
     }
     public depositar(valor: number): void{
-        
+        this._saldo = this._saldo + valor;
     }
     
 
